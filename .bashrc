@@ -31,12 +31,14 @@ PS1='\[\033[01;35m\][\u@\[\033[00m\]\[\033[01;35m\]\W]\[\033[00m\]\$ '
 export SVN_EDITOR='vim'
 #export LANG=C
 alias vi='vim'
-alias ls='ls  --color -p'
+alias ls='ls  --color -p --ignore=*.pyc -I "*.files" -I "*.out" -I "tags" -I "*.taghl" -I "cscope*"'
 alias l='ls'
 alias ll='ls -l'
 export LC_ALL="zh_CN.utf8"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
-alias cdserver='cd ~/Work/server'
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+alias cdserver='cd ~/erver'
+#PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+export PATH=$PATH:~/bin/:~/pomelo/bin/
+

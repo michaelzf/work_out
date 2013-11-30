@@ -36,6 +36,14 @@ Bundle 'TagHighlight'
 Bundle 'Solarized'
 Bundle 'neocomplcache'
 Bundle 'surround.vim'
+"Bundle 'Google-translator'
+Bundle 'Pydiction'
+Bundle 'Tabular'
+" for js
+Bundle 'jshint.vim'
+Bundle 'vim-coffee-script'
+Bundle 'node.js'
+Bundle 'JavaScript-syntax'
 
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
@@ -54,52 +62,58 @@ filetype plugin indent on    " required!
 
 " FuzzyFinder – Ctrl +  E
 map <C-E> :FufFileRecursive<CR>
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
 " 不要使用vi的键盘模式，而是vim自己的
 set nocompatible
 
 " 设定解码
-if has("multi_byte")
-    " When 'fileencodings' starts with 'ucs-bom', don't do this manually
-    "set bomb
-    set fileencodings=ucs-bom,utf-8,chinese,taiwan,japan,korea,latin1
-    " CJK environment detection and corresponding setting
-    if v:lang =~ "^zh_CN"
-        " Simplified Chinese, on Unix euc-cn, on MS-Windows cp936
-        set encoding=utf-8
-        set termencoding=utf-8
-        if &fileencoding == ''
-            set fileencoding=utf-8
-        endif
-    elseif v:lang =~ "^zh_TW"
-        " Traditional Chinese, on Unix euc-tw, on MS-Windows cp950
-        set encoding=euc-tw
-        set termencoding=euc-tw
-        if &fileencoding == ''
-            set fileencoding=euc-tw
-        endif
-    elseif v:lang =~ "^ja_JP"
-        " Japanese, on Unix euc-jp, on MS-Windows cp932
-        set encoding=euc-jp
-        set termencoding=euc-jp
-        if &fileencoding == ''
-            set fileencoding=euc-jp
-        endif
-    elseif v:lang =~ "^ko"
-        " Korean on Unix euc-kr, on MS-Windows cp949
-        set encoding=euc-kr
-        set termencoding=euc-kr
-        if &fileencoding == ''
-            set fileencoding=ecu-kr
-        endif
-    endif
-    " Detect UTF-8 locale, and override CJK setting if needed
-    if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-        set encoding=utf-8
-    endif
-else
-    echoerr 'Sorry, this version of (g)Vim was not compiled with "multi_byte"'
-endif
+"if has("multi_byte")
+    "" When 'fileencodings' starts with 'ucs-bom', don't do this manually
+    ""set bomb
+    "set fileencodings=ucs-bom,utf-8,chinese,taiwan,japan,korea,latin1
+    "" CJK environment detection and corresponding setting
+    "if v:lang =~ "^zh_CN"
+        "" Simplified Chinese, on Unix euc-cn, on MS-Windows cp936
+        ""set encoding=utf-8
+        ""set termencoding=utf-8
+        ""if &fileencoding == ''
+            ""set fileencoding=utf-8
+        ""endif
+		"set encoding=GBK
+		"set termencoding=GBK
+		"if &fileencoding == ''
+			"set fileencoding=GBK
+		"endif
+    "elseif v:lang =~ "^zh_TW"
+        "" Traditional Chinese, on Unix euc-tw, on MS-Windows cp950
+        "set encoding=euc-tw
+        "set termencoding=euc-tw
+        "if &fileencoding == ''
+            "set fileencoding=euc-tw
+        "endif
+    "elseif v:lang =~ "^ja_JP"
+        "" Japanese, on Unix euc-jp, on MS-Windows cp932
+        "set encoding=euc-jp
+        "set termencoding=euc-jp
+        "if &fileencoding == ''
+            "set fileencoding=euc-jp
+        "endif
+    "elseif v:lang =~ "^ko"
+        "" Korean on Unix euc-kr, on MS-Windows cp949
+        "set encoding=euc-kr
+        "set termencoding=euc-kr
+        "if &fileencoding == ''
+            "set fileencoding=ecu-kr
+        "endif
+    "endif
+    "" Detect UTF-7 locale, and override CJK setting if needed
+    "if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+        "set encoding=utf-8
+    "endif
+"else
+    "echoerr 'Sorry, this version of (g)Vim was not compiled with "multi_byte"'
+"endif
 
 " 自动格式化设置
 filetype indent on
@@ -129,6 +143,9 @@ set tabstop=4
 set cindent shiftwidth=4
 set autoindent shiftwidth=4
 
+" 设置距离底部始终保持5行
+set scrolloff=5
+
 " 保存文件格式
 set fileformats=unix,dos
 
@@ -143,6 +160,9 @@ autocmd BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \   exe "normal! g`\"" |
 \ endif
+
+"修改vimrc 自动加载
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            PYTHON 相关的设置                                 "
@@ -184,8 +204,17 @@ set ignorecase
 set pastetoggle=<F9>
 
 
+
 " cscope
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " vimwiki
 "set mouse=a
@@ -235,3 +264,16 @@ let g:clang_auto_select = 0
 "let g:clang_use_library = 1
 let g:neocomplcache_enable_at_startup = 1
 "}
+
+
+"===============================SYNTASTICSETTINGS================================================
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+let g:syntastic_cpp_include_dirs = ['shared/include']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_enable_signs=1
+"let g:syntastic_quiet_warnings=0
+set wildchar=<Tab> wildmenu wildmode=full
+
+au BufNewFile,BufRead *.log         setfiletype=log

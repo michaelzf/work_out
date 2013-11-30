@@ -1,0 +1,18 @@
+ =测试内容=
+==二级标题==
+ *粗体*
+ _斜体_
+~~删除~~
+
+`code` 
+    我前面有四个空格
+
+{{{ class="brush:php"
+int main()
+{
+	return 0;
+}
+
+}}}
+WikiItem
+[百度]http://www.baidu.com 
