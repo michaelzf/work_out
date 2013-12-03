@@ -36,9 +36,10 @@ alias l='ls'
 alias ll='ls -l'
 export LC_ALL="zh_CN.utf8"
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib64/mysql/
 
 alias cdserver='cd ~/erver'
 #PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 export PATH=$PATH:~/bin/:~/pomelo/bin/
 
+source ~/.git-completion.bash
