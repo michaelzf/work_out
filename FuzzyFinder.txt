@@ -1,6 +1,6 @@
 打开vim/vim72/autoload/fuf/file.vim，找到function fuf#file#onInit()，增加一行：
 
-call fuf#defineLaunchCommand(‘FufFileRecursive’, s:MODE_NAME, ‘”**/”‘)
+call fuf#defineLaunchCommand('FufFileRecursive'           , s:MODE_NAME, '"**/"', [])
 
 	然后定义快捷键，在_vimrc中增加：
 
