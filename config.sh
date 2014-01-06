@@ -1,6 +1,7 @@
 mv ~/.vimrc ~/.vimrc_bk
 mv ~/.vim ~/.vim_bk
 mv ~/.bashrc ~/.bashrc_bk
+mv ~/.tmux.conf ~/.tmux.conf_bk
 
 ln -s ~/git_rep/work_out/.vimrc ~/.vimrc
 ln -s ~/git_rep/work_out/.vim ~/.vim
