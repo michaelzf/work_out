@@ -6,44 +6,46 @@
 set nocompatible    " be iMproved
 filetype off        " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " vim-scripts repos
-Bundle 'The-NERD-Commenter'
-Bundle 'ctags.vim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'a.vim'
-Bundle 'superSnipMate' 
-Bundle 'winmanager'
-Bundle 'taglist.vim'
-Bundle 'Tagbar'
-Bundle 'vimwiki' 
-"Bundle 'OmniCppComplete'
-Bundle 'clang-complete'
-Bundle 'minibufexplorerpp'
-Bundle 'TimeTap'
-Bundle 'powerline'
-Bundle 'Syntastic'
-Bundle 'SuperTab'
-Bundle 'TagHighlight'
+Plugin 'The-NERD-Commenter'
+Plugin 'ctags.vim'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'a.vim'
+Plugin 'superSnipMate' 
+Plugin 'winmanager'
+Plugin 'taglist.vim'
+Plugin 'Tagbar'
+Plugin 'vimwiki' 
+"Plugin 'OmniCppComplete'
+Plugin 'clang-complete'
+Plugin 'minibufexplorerpp'
+Plugin 'TimeTap'
+Plugin 'powerline'
+Plugin 'Syntastic'
+Plugin 'SuperTab'
+Plugin 'TagHighlight'
 " 配色方案
-Bundle 'Solarized'
-Bundle 'neocomplcache'
-Bundle 'surround.vim'
-"Bundle 'Google-translator'
-Bundle 'Pydiction'
-Bundle 'Tabular'
+Plugin 'Solarized'
+Plugin 'neocomplcache'
+Plugin 'surround.vim'
+"Plugin 'Google-translator'
+Plugin 'Pydiction'
+Plugin 'Tabular'
 " for js
-Bundle 'jshint.vim'
-Bundle 'vim-coffee-script'
-Bundle 'node.js'
-Bundle 'JavaScript-syntax'
+Plugin 'jshint.vim'
+Plugin 'vim-coffee-script'
+Plugin 'node.js'
+Plugin 'JavaScript-syntax'
+
+call vundle#end()  
 
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
