@@ -27,7 +27,7 @@
 
 test -s ~/.alias && . ~/.alias || true
 
-PS1='\[\033[01;35m\][\u@\[\033[00m\]\[\033[01;35m\]\W]\[\033[00m\]\$ '                                                                 
+PS1='\[\033[01;35m\][\h \u@\[\033[00m\]\[\033[01;35m\]\W]\[\033[00m\]\$ '                                                                 
 export SVN_EDITOR='vim'
 #export LANG=C
 alias vi='vim'
