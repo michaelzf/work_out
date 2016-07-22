@@ -28,7 +28,7 @@ Plugin 'vimwiki'
 Plugin 'clang-complete'
 Plugin 'minibufexplorerpp'
 Plugin 'TimeTap'
-Plugin 'powerline'
+"Plugin 'powerline'
 Plugin 'Syntastic'
 Plugin 'SuperTab'
 Plugin 'TagHighlight'
@@ -44,6 +44,11 @@ Plugin 'jshint.vim'
 Plugin 'vim-coffee-script'
 Plugin 'node.js'
 Plugin 'JavaScript-syntax'
+
+" for php
+Plugin 'alvan/vim-php-manual'
+
+Plugin 'michaelzf/vim-log-syntax'
 
 call vundle#end()  
 
@@ -144,6 +149,8 @@ set number
 set tabstop=4
 set cindent shiftwidth=4
 set autoindent shiftwidth=4
+set expandtab
+
 
 " 设置距离底部始终保持5行
 set scrolloff=5
@@ -233,7 +240,7 @@ let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
 	"set background=dark
 "endif
 ""let g:solarized_termcolors=256
-"colorscheme solarized
+colorscheme solarized
 
 "clang-complete {
 let g:clang_complete_auto = 0 
@@ -279,3 +286,6 @@ let g:syntastic_enable_signs=1
 set wildchar=<Tab> wildmenu wildmode=full
 
 au BufNewFile,BufRead *.log         setfiletype=log
+
+
+:nmap <F8> :Tabularize /=<Enter>
