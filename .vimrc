@@ -233,13 +233,14 @@ let g:vimwiki_list = [{'path': '~/.vim/vimwiki/',
 \ 'html_header': '~/.vim/vimwiki/template/header.tpl',}]
 
 " 设置配色
-"syntax enable
-"if has('gui_running')
-	"set background=light
-"else
-	"set background=dark
-"endif
-""let g:solarized_termcolors=256
+syntax enable
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+"set background=light
+let g:solarized_termcolors=256
 colorscheme solarized
 
 "clang-complete {
