@@ -45,3 +45,7 @@ export PATH=$PATH:~/bin/:~/pomelo/bin/
 source ~/.git-completion.bash
 
 ulimit -c unlimited
+export TERM="xterm-256color"
+alias tmux="tmux -2"
+
+
