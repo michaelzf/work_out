@@ -48,4 +48,4 @@ ulimit -c unlimited
 export TERM="xterm-256color"
 alias tmux="tmux -2"
 
-
+alias tmux="tmux -2"
