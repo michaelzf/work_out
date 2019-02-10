@@ -48,7 +48,7 @@ Plugin 'JavaScript-syntax'
 " for php
 Plugin 'alvan/vim-php-manual'
 
-Plugin 'michaelzf/vim-log-syntax'
+Plugin 'dzeban/vim-log-syntax'
 
 call vundle#end()  
 
