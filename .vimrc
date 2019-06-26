@@ -21,7 +21,7 @@ Plugin 'FuzzyFinder'
 Plugin 'a.vim'
 Plugin 'superSnipMate' 
 Plugin 'winmanager'
-Plugin 'taglist.vim'
+"Plugin 'taglist.vim'
 Plugin 'Tagbar'
 Plugin 'vimwiki' 
 "Plugin 'OmniCppComplete'
@@ -241,7 +241,7 @@ else
 endif
 "set background=light
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
 
 "clang-complete {
 let g:clang_complete_auto = 0 
