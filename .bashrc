@@ -34,6 +34,7 @@ alias vi='vim'
 alias ls='ls  --color -p --ignore=*.pyc -I "*.files" -I "tags" -I "*.taghl" -I "cscope*"'
 alias l='ls'
 alias ll='ls -l'
+alias grep="grep --color "
 export LC_ALL="zh_CN.utf8"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib64/mysql/
@@ -48,4 +49,3 @@ ulimit -c unlimited
 export TERM="xterm-256color"
 alias tmux="tmux -2"
 
-alias tmux="tmux -2"
