@@ -1,9 +1,120 @@
 [url "git@code.aliyun.com:"]
 	insteadOf = https://code.aliyun.com/
+
+[user]
+	# 请设置你的用户名和邮箱
+	# name = Your Name
+	# email = your.email@example.com
+
+[core]
+	editor = nvim
+	autocrlf = input
+	whitespace = fix
+	excludesfile = ~/.gitignore_global
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	default = current
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[diff]
+	tool = nvimdiff
+	colorMoved = default
+
+[difftool]
+	prompt = false
+
+[difftool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$REMOTE"
+
+[merge]
+	tool = nvimdiff
+	conflictstyle = diff3
+
+[mergetool]
+	prompt = false
+	keepBackup = false
+
+[mergetool "nvimdiff"]
+	cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE"
+
 [alias]
+	# 基础别名 (保留原有)
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
+
+	# 新增别名
+	lg = log --graph --oneline --decorate -10
+	lga = log --graph --oneline --decorate --all
+	aa = add --all
+	cm = commit -m
+	ca = commit --amend
+	can = commit --amend --no-edit
+	df = diff
+	dfs = diff --staged
+	pl = pull --rebase
+	ps = push
+	psf = push --force-with-lease
+	sw = switch
+	swc = switch -c
+	rb = rebase
+	rbi = rebase -i
+	rbc = rebase --continue
+	rba = rebase --abort
+	cp = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
+	stl = stash list
+	stp = stash pop
+	sta = stash apply
+	std = stash drop
+
+	# 实用别名
+	aliases = config --get-regexp alias
+	branches = branch -a
+	remotes = remote -v
+	tags = tag -l
+	contributors = shortlog -sn
+	today = log --since=midnight --oneline
+	week = log --since='1 week ago' --oneline
+	wip = !git add -A && git commit -m 'WIP'
+	undo = reset --soft HEAD~1
+	amend = commit --amend --no-edit
+	cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
+[rerere]
+	enabled = true
+
+[help]
+	autocorrect = 10
