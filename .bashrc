@@ -121,7 +121,7 @@ fdir() {
 }
 
 # 在文件中搜索
-fgrep() {
+search() {
     grep -rn "$1" .
 }
 

@@ -1,4 +1,4 @@
--- LSP 配置
+-- LSP 配置 (Neovim 0.11+ API)
 return {
     -- Mason: LSP 服务器管理
     {
@@ -41,28 +41,33 @@ return {
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
-            local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- LSP 快捷键
-            local on_attach = function(client, bufnr)
-                local opts = { noremap = true, silent = true, buffer = bufnr }
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<leader>f", function()
-                    vim.lsp.buf.format({ async = true })
-                end, opts)
-            end
+            -- LSP 快捷键 (通过 LspAttach 自动命令)
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+                callback = function(ev)
+                    local opts = { noremap = true, silent = true, buffer = ev.buf }
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+                    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+                    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set("n", "<leader>f", function()
+                        vim.lsp.buf.format({ async = true })
+                    end, opts)
+                end,
+            })
 
+            -- 使用新的 vim.lsp.config API (Neovim 0.11+)
             -- Lua
-            lspconfig.lua_ls.setup({
+            vim.lsp.config.lua_ls = {
+                cmd = { "lua-language-server" },
+                filetypes = { "lua" },
+                root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
                 capabilities = capabilities,
-                on_attach = on_attach,
                 settings = {
                     Lua = {
                         diagnostics = {
@@ -75,31 +80,42 @@ return {
                         telemetry = { enable = false },
                     },
                 },
-            })
+            }
 
             -- Python
-            lspconfig.pyright.setup({
+            vim.lsp.config.pyright = {
+                cmd = { "pyright-langserver", "--stdio" },
+                filetypes = { "python" },
+                root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
                 capabilities = capabilities,
-                on_attach = on_attach,
-            })
+            }
 
             -- TypeScript/JavaScript
-            lspconfig.ts_ls.setup({
+            vim.lsp.config.ts_ls = {
+                cmd = { "typescript-language-server", "--stdio" },
+                filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+                root_markers = { "package.json", "tsconfig.json", ".git" },
                 capabilities = capabilities,
-                on_attach = on_attach,
-            })
+            }
 
             -- Go
-            lspconfig.gopls.setup({
+            vim.lsp.config.gopls = {
+                cmd = { "gopls" },
+                filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                root_markers = { "go.mod", "go.work", ".git" },
                 capabilities = capabilities,
-                on_attach = on_attach,
-            })
+            }
 
             -- Rust
-            lspconfig.rust_analyzer.setup({
+            vim.lsp.config.rust_analyzer = {
+                cmd = { "rust-analyzer" },
+                filetypes = { "rust" },
+                root_markers = { "Cargo.toml", ".git" },
                 capabilities = capabilities,
-                on_attach = on_attach,
-            })
+            }
+
+            -- 启用 LSP 服务器
+            vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "gopls", "rust_analyzer" })
 
             -- 诊断图标
             local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
